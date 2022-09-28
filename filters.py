@@ -93,16 +93,15 @@ class VelocityFilter(AttributeFilter):
     def get(cls, approach):
         return approach.velocity 
 
-
 class DiameterFilter(AttributeFilter):
     @classmethod
     def get(cls, approach):
-        return approach.neo.Diameter
+        return approach.Diameter
 
 class HazardousFilter(AttributeFilter):
     @classmethod
-    def get(cls, approach):
-        return approach.neo.hazardous
+    def get(cls, NEO):
+        return NEO.hazardous
 
 
 
@@ -173,10 +172,6 @@ def create_filters(
     if velocity_max is not None:
         flt = VelocityFilter(operator.lt,float(velocity_max))
         fiters.append(flt)
-
-
-
-
     if diameter_min is not None:
         flt = DiameterFilter(operator.gt,float(diameter_min))
         fiters.append(flt)
